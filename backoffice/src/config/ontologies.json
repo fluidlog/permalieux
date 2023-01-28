@@ -35,6 +35,16 @@
     "url": "http://virtual-assembly.org/ontologies/pair#"
   },
   {
+    "prefix": "heco",
+    "owl": "https://gitlab.huma-num.fr/4ch/heco/-/raw/main/heco-v0.6.ttl",
+    "url": "https://portal.carto4ch.huma-num.fr/ontologies/heco#"
+  },
+  {
+    "prefix": "sec",
+    "owl": "",
+    "url": "https://w3id.org/security#"
+  },
+  {
     "prefix": "skos",
     "owl": "",
     "url": "http://www.w3.org/2004/02/skos/core#"

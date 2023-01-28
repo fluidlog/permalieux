@@ -1,7 +1,7 @@
 import React from 'react';
 import { Show } from 'react-admin';
 import PanToolIcon from '@material-ui/icons/PanTool';
-import { RedirectByType } from '@semapps/archipelago-layout';
+import RedirectByType from "../../../common/RedirectByType";
 
 const ActivityRedirect = props => (
   <Show {...props}>
@@ -25,6 +25,9 @@ export default {
   },
   dataModel: {
     types: ['pair:Project', 'pair:Event', 'pair:Task'],
+    list: {
+      servers: '@default',
+    },
     fieldsMapping: {
       title: 'pair:label'
     }

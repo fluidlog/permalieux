@@ -17,7 +17,8 @@ export default {
   dataModel: {
     types: ['pair:Person'],
     list: {
-      dereference: ['pair:hasLocation/pair:hasPostalAddress']
+      servers: '@default',
+      forceArray: ['pair:actorOfMembership','heco:hasCompetence','heco:qualityOfCompetence']
     },
     fieldsMapping: {
       title: 'pair:label'
@@ -35,7 +36,12 @@ export default {
         'pair:affiliatedBy': 'Membre de',
         'pair:offers': 'A pour compétences',
         'pair:hasTopic': 'A pour intérêt',
-        'pair:hasLocation': 'Adresse'
+        'pair:hasLocation': 'Adresse',
+        'pair:aims': 'Recherche les compétences',
+        'pair:membershipActor': 'Membre',
+        'heco:holds': 'A travaillé comme',
+        'heco:attends': 'A suivi les formations',
+        'heco:contributes': 'A contribué à'
       }
     }
   }

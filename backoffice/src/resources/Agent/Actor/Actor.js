@@ -1,7 +1,7 @@
 import React from 'react';
-import PersonIcon from '@material-ui/icons/Person';
+import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 import { Show } from 'react-admin';
-import { RedirectByType } from '@semapps/archipelago-layout';
+import RedirectByType from "../../../common/RedirectByType";
 
 const ActorRedirect = props => (
   <Show {...props}>
@@ -12,13 +12,16 @@ const ActorRedirect = props => (
 export default {
   config: {
     show: ActorRedirect,
-    icon: PersonIcon,
+    icon: SupervisedUserCircleRoundedIcon,
     options: {
       label: 'Acteurs'
     }
   },
   dataModel: {
-    types: ['pair:Organization', 'pair:Person', 'pair:Group']
+    types: ['pair:Organization', 'pair:Person', 'pair:Human', 'pair:Group'],
+    list: {
+      servers: '@default',
+    }
   },
   translations: {
     fr: {

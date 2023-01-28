@@ -1,6 +1,6 @@
 import React from 'react';
 import { SimpleForm, TextInput, SelectArrayInput } from 'react-admin';
-import { Create } from '@semapps/archipelago-layout';
+import Create from "../../../layout/create/Create";
 
 const TypeCreate = props => (
   <Create {...props}>
@@ -12,6 +12,7 @@ const TypeCreate = props => (
           { id: 'pair:Type', name: 'Type' },
           { id: 'pair:ActivityType', name: 'ActivityType' },
           { id: 'pair:AgentType', name: 'AgentType' },
+          { id: 'pair:CategoryType', name: 'CategoryType' },
           { id: 'pair:ConceptType', name: 'ConceptType' },
           { id: 'pair:DocumentType', name: 'DocumentType' },
           { id: 'pair:EventType', name: 'EventType' },
@@ -20,6 +21,7 @@ const TypeCreate = props => (
           { id: 'pair:IdeaType', name: 'IdeaType' },
           { id: 'pair:ObjectType', name: 'ObjectType' },
           { id: 'pair:OrganizationType', name: 'OrganizationType' },
+          { id: 'heco:JobType', name: 'JobType' },
           { id: 'pair:PlaceType', name: 'PlaceType' },
           { id: 'pair:ProjectType', name: 'ProjectType' },
           { id: 'pair:ResourceType', name: 'ResourceType' },

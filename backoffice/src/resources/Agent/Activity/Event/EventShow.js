@@ -1,14 +1,15 @@
 import React from 'react';
-import { ChipField, SingleFieldList, TextField, UrlField, DateField } from 'react-admin';
+import { TextField, UrlField, DateField } from 'react-admin';
 import { Grid } from '@material-ui/core';
-import { Hero, GridList, MainList, SideList, AvatarField } from '@semapps/archipelago-layout';
-import { ReferenceArrayField } from '@semapps/semantic-data-provider';
-import { ShowWithPermissions } from '@semapps/auth-provider';
-import { MarkdownField } from '@semapps/markdown-components';
+import { AvatarWithLabelField, QuickAppendReferenceArrayField, ReferenceArrayField } from '@semapps/field-components';
+import { GridList, ChipList } from '@semapps/list-components';
+import { MarkdownField } from '../../../../common/field';
+import { Hero, MainList, SideList } from '../../../../common/list';
 import EventTitle from './EventTitle';
+import Show from "../../../../layout/show/Show";
 
 const EventShow = props => (
-  <ShowWithPermissions title={<EventTitle />} {...props}>
+  <Show title={<EventTitle />} {...props}>
     <Grid container spacing={5}>
       <Grid item xs={12} sm={9}>
         <Hero>
@@ -24,19 +25,17 @@ const EventShow = props => (
       <Grid item xs={12} sm={3}>
         <SideList>
           <ReferenceArrayField reference="Actor" source="pair:involves" sort={{ field: 'type', order: 'ASC' }}>
-            <GridList xs={6} linkType="show">
-              <AvatarField label="pair:label" image="image" />
+            <GridList xs={6} linkType="show" externalLinks>
+              <AvatarWithLabelField label="pair:label" image="image" />
             </GridList>
           </ReferenceArrayField>
-          <ReferenceArrayField reference="Theme" source="pair:hasTopic">
-            <SingleFieldList linkType="show">
-              <ChipField source="pair:label" color="secondary" />
-            </SingleFieldList>
-          </ReferenceArrayField>
+          <QuickAppendReferenceArrayField reference="Theme" source="pair:hasTopic">
+            <ChipList primaryText="pair:label" linkType="show" externalLinks />
+          </QuickAppendReferenceArrayField>
         </SideList>
       </Grid>
     </Grid>
-  </ShowWithPermissions>
+  </Show>
 );
 
 export default EventShow;

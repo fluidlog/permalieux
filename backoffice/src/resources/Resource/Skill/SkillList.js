@@ -1,12 +1,12 @@
 import React from 'react';
-import { SimpleList } from '@semapps/archipelago-layout';
-import { ListWithPermissions } from '@semapps/auth-provider';
-import PanToolIcon from '@material-ui/icons/PanTool';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import SimpleList from "../../../common/list/SimpleList";
+import List from "../../../layout/list/List";
 
 const SkillList = props => (
-  <ListWithPermissions {...props}>
-    <SimpleList primaryText={record => record['pair:label']} leftAvatar={() => <PanToolIcon />} linkType="show" />
-  </ListWithPermissions>
+  <List {...props}>
+    <SimpleList primaryText={record => record['pair:label']} leftAvatar={() => <PlaylistAddCheckIcon />} linkType="show" />
+  </List>
 );
 
 export default SkillList;

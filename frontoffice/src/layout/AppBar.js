@@ -56,8 +56,8 @@ const AppBar = ({ userMenu, logout, menuItems, setSidebarOpen }) => {
         <Grid container>
           <Grid item sm={4} xs={10} >
             <Link to="/" className={classes.menuLink}>
-              <img src={process.env.PUBLIC_URL + '/colibris-blanc.png'} alt="Colibris" className={classes.logo} />
-              <span className={classes.logoText}>Colibris Pays Creillois</span>
+              <img src={process.env.PUBLIC_URL + '/logo-permalieux.png'} alt="Permalieux" className={classes.logo} />
+              <span className={classes.logoText}>Permalieux</span>
             </Link>
           </Grid>
           <Grid item sm={8} xs={2} align="right">

@@ -1,7 +1,8 @@
-import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
-import { Show } from 'react-admin';
-import { RedirectByType } from '@semapps/archipelago-layout';
 import React from 'react';
+import { Show } from 'react-admin';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
+import RedirectByType from "../../common/RedirectByType";
+
 
 const ResourceRedirect = props => (
   <Show {...props}>
@@ -12,17 +13,20 @@ const ResourceRedirect = props => (
 export default {
   config: {
     show: ResourceRedirect,
-    icon: NaturePeopleIcon,
+    icon: HowToRegIcon,
     options: {
-      label: 'Ressources'
+      label: 'Compétences'
     }
   },
   dataModel: {
-    types: ['pair:Skill']
+    types: ['pair:Skill', 'heco:Quality', 'heco:Occupation', 'heco:Job', 'heco:Training', 'heco:Contribution'],
+    list: {
+      servers: '@default',
+    }
   },
   translations: {
     fr: {
-      name: 'Ressource |||| Ressources'
+      name: 'Compétence |||| Compétences'
     }
   }
 };

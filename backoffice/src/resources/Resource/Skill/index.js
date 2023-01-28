@@ -1,18 +1,18 @@
-import { PairResourceCreate } from '../../../pair';
+import SkillCreate from './SkillCreate';
 import SkillEdit from './SkillEdit';
 import SkillList from './SkillList';
 import SkillShow from './SkillShow';
-import PersonIcon from '@material-ui/icons/Person';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
 export default {
   config: {
     list: SkillList,
-    create: PairResourceCreate,
+    create: SkillCreate,
     edit: SkillEdit,
     show: SkillShow,
-    icon: PersonIcon,
+    icon: PlaylistAddCheckIcon,
     options: {
-      label: 'Compétences',
+      label: 'Termes',
       parent: 'Resource'
     }
   },
@@ -27,7 +27,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Compétence |||| Compétences',
+      name: 'Terme |||| Termes',
       fields: {
         'pair:label': 'Titre',
         'pair:offeredBy': 'Proposé par',

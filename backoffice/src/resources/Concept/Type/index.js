@@ -27,12 +27,17 @@ export default {
       'pair:IdeaType',
       'pair:ObjectType',
       'pair:OrganizationType',
+      'heco:JobType',
       'pair:PlaceType',
       'pair:ProjectType',
       'pair:ResourceType',
       'pair:SubjectType',
+      'pair:CategoryType',
       'pair:TaskType'
     ],
+    list: {
+      servers: '@default'
+    },
     fieldsMapping: {
       title: 'pair:label'
     }

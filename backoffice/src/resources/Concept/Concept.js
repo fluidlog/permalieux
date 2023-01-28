@@ -1,18 +1,21 @@
-import LanguageIcon from '@material-ui/icons/Language';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 export default {
   config: {
-    icon: LanguageIcon,
+    icon: SettingsIcon,
     options: {
-      label: 'Concepts'
+      label: 'Config'
     }
   },
   dataModel: {
-    types: ['pair:Theme']
+    types: ['pair:Theme'],
+    list: {
+      servers: '@default',
+    }
   },
   translations: {
     fr: {
-      name: 'Concept |||| Concepts'
+      name: 'Config |||| Configs'
     }
   }
 };

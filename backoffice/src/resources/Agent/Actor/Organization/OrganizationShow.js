@@ -1,46 +1,19 @@
 import React from 'react';
 import { TextField, SimpleList, ArrayField } from 'react-admin';
-import { Box, Grid } from '@material-ui/core';
-import {
-  MainList,
-  SideList,
-  Hero,
-  GridList,
-  AvatarField,
-  SeparatedListField,
-  RightLabel
-} from '@semapps/archipelago-layout';
-import { ShowWithPermissions } from '@semapps/auth-provider';
+import { Box, Grid, Avatar } from '@material-ui/core';
 import { MapField } from '@semapps/geo-components';
-import { ReferenceArrayField, ReferenceField, GroupedReferenceHandler } from '@semapps/semantic-data-provider';
-import { QuickAppendReferenceArrayField } from '@semapps/field-components';
-import { ChipList } from '@semapps/list-components';
-import { MarkdownField } from '@semapps/markdown-components';
-import OrganizationTitle from './OrganizationTitle';
+import { GroupedReferenceHandler } from '@semapps/semantic-data-provider';
+import { ReferenceArrayField, ReferenceField, QuickAppendReferenceArrayField, MultiUrlField, AvatarWithLabelField, SeparatedListField } from '@semapps/field-components';
+import { ChipList, GridList } from '@semapps/list-components';
 import DescriptionIcon from '@material-ui/icons/Description';
 import HomeIcon from '@material-ui/icons/Home';
-
-const UrlArrayField = ({ record, source }) => {
-  let links = typeof record[source] === 'string' ? [record[source]] : record[source];
-  let index = 0;
-  for (let link of links) {
-    if (link.startsWith('https://')) {
-      links[index] = link.split('https://')[1];
-    }
-    index++;
-  }
-
-  return record
-    ? links.map(item => (
-        <div>
-          <a href={'https://' + item} target="_blank" rel="noopener noreferrer">
-            {item}
-          </a>
-        </div>
-      ))
-    : null;
-};
-UrlArrayField.defaultProps = { addLabel: true };
+import ForumIcon from '@material-ui/icons/Forum';
+import VideocamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
+import OrganizationTitle from './OrganizationTitle';
+import { MarkdownField } from '../../../../common/field';
+import { Hero, MainList, SideList } from '../../../../common/list';
+import RightLabel from "../../../../common/list/SideList/RightLabel";
+import Show from "../../../../layout/show/Show";
 
 const ConditionalSourceDefinedHandler = ({ record, source, children, ...otherProps }) => {
   if (record?.[source] && (!Array.isArray(record[source]) || record[source].length > 0)) {
@@ -52,13 +25,34 @@ const ConditionalSourceDefinedHandler = ({ record, source, children, ...otherPro
   }
 };
 
+const domainMapping = {
+  'forums.assemblee-virtuelle.org': {
+    label: 'Forum',
+    icon: <ForumIcon />,
+    color: '#28ccfb',
+    contrastText: 'white'
+  },
+  'peertube.virtual-assembly.org': {
+    label: 'Peertube',
+    icon: <VideocamOutlinedIcon />,
+    color: 'white',
+    contrastText: '#f2690d'
+  },
+  'chat.lescommuns.org': {
+    label: 'Chat',
+    icon: <Avatar src="/lescommuns.jpg" />,
+    color: 'white',
+    contrastText: 'black'
+  }
+}
+
 const OrganizationShow = props => (
-  <ShowWithPermissions title={<OrganizationTitle />} {...props}>
+  <Show title={<OrganizationTitle />} {...props}>
     <Grid container spacing={5}>
       <Grid item xs={12} sm={9}>
         <Hero image="image">
           <TextField source="pair:comment" />
-          <UrlArrayField source="pair:homePage" />
+          <MultiUrlField source="pair:homePage" domainMapping={domainMapping} />
           <ReferenceArrayField reference="Status" source="pair:hasStatus">
             <SeparatedListField linkType={false}>
               <TextField source="pair:label" />
@@ -100,9 +94,9 @@ const OrganizationShow = props => (
               <RightLabel mb={0} />
               <ArrayField source="pair:organizationOfMembership">
                 <Box mb={4}>
-                  <GridList xs={6} linkType={false}>
-                    <ReferenceField reference="Person" source="pair:membershipActor" link="show">
-                      <AvatarField label="pair:label" image="image" />
+                  <GridList xs={6} linkType={false} externalLinks>
+                    <ReferenceField reference="Person" source="pair:membershipActor" link="show" basePath="/Person">
+                      <AvatarWithLabelField label="pair:label" image="image" />
                     </ReferenceField>
                   </GridList>
                 </Box>
@@ -110,22 +104,22 @@ const OrganizationShow = props => (
             </ConditionalSourceDefinedHandler>
           </GroupedReferenceHandler>
           <ReferenceArrayField reference="Organization" source="pair:partnerOf">
-            <GridList xs={6} linkType="show">
-              <AvatarField label="pair:label" image="image">
+            <GridList xs={6} linkType="show" externalLinks>
+              <AvatarWithLabelField label="pair:label" image="image">
                 <HomeIcon />
-              </AvatarField>
+              </AvatarWithLabelField>
             </GridList>
           </ReferenceArrayField>
           <QuickAppendReferenceArrayField reference="Activity" source="pair:involvedIn">
-            <ChipList primaryText="pair:label" linkType="show" />
+            <ChipList primaryText="pair:label" linkType="show" externalLinks />
           </QuickAppendReferenceArrayField>
           <QuickAppendReferenceArrayField reference="Theme" source="pair:hasTopic">
-            <ChipList primaryText="pair:label" linkType="show" />
+            <ChipList primaryText="pair:label" linkType="show" externalLinks />
           </QuickAppendReferenceArrayField>
         </SideList>
       </Grid>
     </Grid>
-  </ShowWithPermissions>
+  </Show>
 );
 
 export default OrganizationShow;
