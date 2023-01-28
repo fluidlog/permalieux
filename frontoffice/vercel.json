@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+      "REACT_APP_MIDDLEWARE_URL": "https://colibris.social/",
+      "REACT_APP_LOCAL_GROUP_CODS": "https://colibris.social/payscreillois/",
+      "REACT_APP_LOCAL_GROUP_URL": "https://colibris.social/groupeslocaux/groups/payscreillois"
+    }
+  },
+  "public": true
+}
